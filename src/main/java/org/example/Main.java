@@ -27,7 +27,7 @@ public class Main {
         boolean loop=true;
         while(loop)
         {
-            System.out.println("Enter a choice:\n1. Add Customer\n2. Add Gift card\n3.Top-Up Gift Card\n4.Closed gift card\n5.Purchase Item\n6.Display\n7.Exit");
+            System.out.println("Enter a choice:\n1. Add Customer\n2. Add Gift card\n3.Top-Up Gift Card\n4.Closed gift card\n5.Purchase Item\n6.Display\n7.Block Card\n8.Unblock Card\n9.Exit");
             choice=sc.nextInt();
             switch (choice)
             {
@@ -89,6 +89,26 @@ public class Main {
                     break;
 
                 case 7:
+                    System.out.println("Enter your id:");
+                    id= sc.nextInt();
+                    System.out.println("Enter your cardNo");
+                    cardNo=sc.nextInt();
+                    System.out.println("Enter your pin");
+                    pin=sc.nextInt();
+                    app.block_card(id,cardNo,pin);
+                    break;
+
+                case 8:
+                    System.out.println("Enter your id:");
+                    id= sc.nextInt();
+                    System.out.println("Enter your cardNo");
+                    cardNo=sc.nextInt();
+                    System.out.println("Enter your pin");
+                    pin=sc.nextInt();
+                    app.unblock_card(id,cardNo,pin);
+                    break;
+
+                case 9:
                     loop=false;
                     break;
             }

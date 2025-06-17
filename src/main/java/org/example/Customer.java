@@ -4,6 +4,7 @@ public class Customer
 {
     private int id;
     private int balance;
+    Set<Integer>blockCard;
     Map<Integer,Gift>card;
     Map<Integer,Transaction>transactionMap;
 
@@ -11,6 +12,7 @@ public class Customer
     {
         this.id=id;
         this.balance=balance;
+        this.blockCard=new HashSet<>();
         this.card=new HashMap<>();
         this.transactionMap=new TreeMap<>();
     }

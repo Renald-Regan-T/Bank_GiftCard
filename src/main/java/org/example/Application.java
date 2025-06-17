@@ -89,7 +89,7 @@ public class Application
         }
         else
         {
-            System.out.println("Insufficent ammount");
+            System.out.println("Insufficent ammount....t");
         }
     }
 
@@ -105,7 +105,7 @@ public class Application
             System.out.println("Successfully card is closed and current balance is :"+customer.getBalance());
         }
         else
-            System.out.println("Authentication failed!!!");
+            System.out.println("Authentication failed!!!....c");
     }
 
     public void purchase(int id,int cardNo,int pin,int amount)
@@ -113,7 +113,7 @@ public class Application
         if(Authentication(id,cardNo,pin))
         {
             Gift card=this.customerMap.get(id).card.get(cardNo);
-            if(card.getBalance() >= amount)
+            if(card.getBalance() >= amount && !this.customerMap.get(id).blockCard.contains(cardNo))
             {
                 card.setPoint(card.getPoint()+(amount/500 * 50));
                 if(card.getPoint()>=200)
@@ -126,7 +126,7 @@ public class Application
                 card.setBalance(card.getBalance() - amount);
             }
             else
-                System.out.println("Insufficeint amount");
+                System.out.println("Insufficeint amount...p or block the card");
         }
     }
 
@@ -135,6 +135,28 @@ public class Application
         if(s.equals("Silver"))
             return "Gold";
         return "Platinum";
+    }
+
+    public void block_card(int id,int cardNo,int pin)
+    {
+        if(Authentication(id,cardNo,pin))
+        {
+            Customer customer=this.customerMap.get(id);
+            customer.blockCard.add(cardNo);
+        }
+        else
+            System.out.println("Invalid pin...b");
+    }
+
+    public void unblock_card(int id,int cardNo,int pin)
+    {
+        if(Authentication(id,cardNo,pin))
+        {
+            Customer customer=this.customerMap.get(id);
+            customer.blockCard.remove(cardNo);
+        }
+        else
+            System.out.println("Invalid pin...ub");
     }
 
     public boolean Authentication(int id,int cardNo,int pin)
